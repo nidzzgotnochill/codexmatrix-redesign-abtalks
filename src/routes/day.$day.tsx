@@ -142,10 +142,10 @@ function DayPage() {
               <motion.span
                 layoutId="day-tab"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className="absolute inset-0 -z-10 rounded-xl bg-momentum"
+                className="absolute inset-0 rounded-xl bg-momentum"
               />
             )}
-            {t}
+            <span className="relative">{t}</span>
           </button>
         ))}
       </div>
