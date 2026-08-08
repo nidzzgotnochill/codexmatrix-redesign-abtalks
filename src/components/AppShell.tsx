@@ -1,6 +1,6 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { Home, LayoutGrid, Terminal, Info, Moon, Sun, Zap } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { useChallenge } from "@/lib/challenge-store";
@@ -15,12 +15,10 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const todayHref = `/day/${profile.challengeDay}`;
 
-  useShortcuts({
-    onInfo: () => setInfoOpen((v) => !v),
-    onTheme: toggle,
-    todayHref,
-    navigate: (to: string) => router.navigate({ to }),
-  });
+  const onInfo = useCallback(() => setInfoOpen((v) => !v), []);
+  const navigate = useCallback((to: string) => router.navigate({ to }), [router]);
+
+  useShortcuts({ onInfo, onTheme: toggle, todayHref, navigate });
 
   const items = [
     { to: "/", label: "Home", icon: Home },
