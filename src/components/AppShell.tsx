@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Home, LayoutGrid, Terminal, Info, Moon, Sun, Zap } from "lucide-react";
@@ -11,6 +11,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [infoOpen, setInfoOpen] = useState(false);
   const { theme, toggle } = useTheme();
   const { profile } = useChallenge();
+  const router = useRouter();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const todayHref = `/day/${profile.challengeDay}`;
 
@@ -18,6 +19,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     onInfo: () => setInfoOpen((v) => !v),
     onTheme: toggle,
     todayHref,
+    navigate: (to: string) => router.navigate({ to }),
   });
 
   const items = [
@@ -104,10 +106,12 @@ function useShortcuts({
   onInfo,
   onTheme,
   todayHref,
+  navigate,
 }: {
   onInfo: () => void;
   onTheme: () => void;
   todayHref: string;
+  navigate: (to: string) => void;
 }) {
   useEffect(() => {
     let awaitingGo = false;
@@ -125,8 +129,7 @@ function useShortcuts({
         const target = key === "h" ? "/" : key === "d" ? "/dashboard" : key === "t" ? todayHref : null;
         if (target) {
           e.preventDefault();
-          window.history.pushState({}, "", target);
-          window.dispatchEvent(new PopStateEvent("popstate"));
+          navigate(target);
         }
         return;
       }
@@ -151,5 +154,5 @@ function useShortcuts({
       window.removeEventListener("keydown", onKey);
       clearTimeout(timer);
     };
-  }, [onInfo, onTheme, todayHref]);
+  }, [onInfo, onTheme, todayHref, navigate]);
 }
