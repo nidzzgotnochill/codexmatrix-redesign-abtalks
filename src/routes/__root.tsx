@@ -79,20 +79,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ABTalkS — 60-Day Coding Challenge" },
+      { title: "ABTalkS — 60 Days. One Task a Day. Public Proof." },
       {
         name: "description",
         content:
-          "ABTalkS is a 60-day coding challenge for Indian college students. Build daily, commit publicly, and grow a streak recruiters can see.",
+          "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post.",
       },
       { name: "author", content: "ABTalkS" },
-      { property: "og:title", content: "ABTalkS — 60-Day Coding Challenge" },
+      { property: "og:title", content: "ABTalkS — 60 Days. One Task a Day. Public Proof." },
       {
         property: "og:description",
-        content: "Build every day for 60 days. Prove it with a GitHub commit and a LinkedIn post.",
+        content: "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "ABTalkS — 60 Days. One Task a Day. Public Proof." },
+      { name: "twitter:description", content: "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4b7017e7a7979e1114607e1c1640c79a/id-preview-e15dcc4b--671c2e9d-5bfa-46d4-849f-1e87fe0589ff.lovable.app-1786217425186.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4b7017e7a7979e1114607e1c1640c79a/id-preview-e15dcc4b--671c2e9d-5bfa-46d4-849f-1e87fe0589ff.lovable.app-1786217425186.png" },
     ],
     links: [
       {

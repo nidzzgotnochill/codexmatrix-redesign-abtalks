@@ -23,10 +23,10 @@ export const Route = createFileRoute("/")({
         content:
           "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post.",
       },
-      { property: "og:title", content: "ABTalkS — 60-Day Coding Challenge" },
+      { property: "og:title", content: "ABTalkS — 60 Days. One Task a Day. Public Proof." },
       {
         property: "og:description",
-        content: "Pick a track, build every night, ship public proof. Recruiters can finally see your work.",
+        content: "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post.",
       },
     ],
   }),
