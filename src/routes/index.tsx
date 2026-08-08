@@ -64,7 +64,7 @@ function Landing() {
       <section className="pt-6">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-[11px] font-semibold text-primary">
           <Sparkles aria-hidden className="size-3.5" />
-          Cohort 07 · starts every Monday
+          60-DAY CODING CHALLENGE
         </span>
 
         <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl">
@@ -147,7 +147,7 @@ function Landing() {
           <div>
             <h3 className="text-sm font-bold">Code at 2 AM? We've got you.</h3>
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-              A challenge day stays open until 4:00 AM IST. Late-night commits still count for the day before.
+              A challenge day stays open until local midnight. Late-night commits still count for the day before.
             </p>
           </div>
         </div>

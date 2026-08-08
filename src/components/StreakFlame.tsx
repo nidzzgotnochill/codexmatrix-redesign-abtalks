@@ -14,8 +14,8 @@ export function StreakFlame({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border font-semibold shadow-sm",
-        size === "sm" ? "px-3 py-1.5 text-xs" : "px-3.5 py-2 text-sm",
+        "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border font-semibold shadow-sm",
+        size === "sm" ? "px-2.5 py-1.5 text-[10px]" : "px-3 py-1.75 text-[11px]",
         alive
           ? "border-primary/25 bg-primary/10 text-primary"
           : "border-border bg-muted text-muted-foreground",
@@ -24,10 +24,13 @@ export function StreakFlame({
     >
       <Flame
         aria-hidden
-        className={cn(size === "sm" ? "size-4" : "size-5", alive && "animate-flame fill-current")}
+        className={cn(size === "sm" ? "size-3.5" : "size-4", alive && "animate-flame fill-current")}
       />
-      <span className="font-mono tabular-nums">{streak}</span>
-      <span>day{streak === 1 ? "" : "s"}</span>
+      <span className="font-mono font-bold tabular-nums">{streak}</span>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.16em]">
+        {streak === 1 ? "day" : "days"}
+      </span>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.16em]">streak</span>
     </span>
   );
 }

@@ -116,7 +116,7 @@ function Dashboard() {
             </div>
             <div className="flex items-center gap-1.5 rounded-2xl border border-border/70 bg-surface-raised/70 px-3 py-2 text-[11px] font-medium text-muted-foreground sm:whitespace-nowrap">
               <Clock aria-hidden className="size-3.5" />
-              Due by 4:00 AM IST
+              Due at local midnight
             </div>
           </div>
           <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-border/70 bg-surface-raised/70 p-3 sm:flex-row sm:items-center sm:justify-between">
@@ -183,11 +183,11 @@ function Dashboard() {
               onClick={() => setSelected(d)}
               aria-label={`Day ${d.id}, ${d.status}`}
               className={cn(
-                "flex aspect-square items-center justify-center rounded-md font-mono text-[10px] font-bold transition-transform hover:scale-110",
-                d.status === "completed" && "bg-primary text-primary-foreground",
-                d.status === "missed" && "bg-destructive/85 text-destructive-foreground",
-                d.status === "today" && "bg-accent text-accent-foreground ring-2 ring-accent/40",
-                d.status === "upcoming" && "bg-muted text-subtle-foreground",
+                "flex aspect-square items-center justify-center rounded-lg border font-mono text-[10px] font-bold transition-transform hover:scale-105",
+                d.status === "completed" && "border-primary/20 bg-primary/10 text-primary",
+                d.status === "missed" && "border-destructive/20 bg-destructive/10 text-destructive",
+                d.status === "today" && "border-primary/30 bg-primary/15 text-primary ring-2 ring-primary/20",
+                d.status === "upcoming" && "border-border bg-muted text-subtle-foreground",
               )}
             >
               {d.id}

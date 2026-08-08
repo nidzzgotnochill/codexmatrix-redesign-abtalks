@@ -118,14 +118,17 @@ function DayPage() {
         <h1 className="mt-1 text-xl font-extrabold leading-tight">{day.title}</h1>
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{day.summary}</p>
         {day.status === "today" && (
-          <div className="mt-3 flex items-center justify-between gap-3 rounded-2xl border border-highlight/25 bg-highlight/10 p-3">
+          <div className="mt-3 flex items-center justify-between gap-2.5 rounded-2xl border border-highlight/20 bg-highlight/10 p-2.5">
             <div className="min-w-0">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-highlight/85">Deadline</p>
-              <p className="mt-0.5 text-[11px] text-muted-foreground">Closes at 4:00 AM IST</p>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">Closes at local midnight</p>
             </div>
-            <div className="rounded-xl border border-highlight/25 bg-background/70 px-3 py-2 text-center">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Time left</p>
-              <p className="mt-1 font-mono text-lg font-black tracking-[0.2em] text-foreground">{countdown}</p>
+            <div className="flex items-center gap-2 rounded-xl border border-highlight/20 bg-background/70 px-2.5 py-2 text-center">
+              <Clock aria-hidden className="size-3.5 text-highlight" />
+              <div>
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Time left</p>
+                <p className="mt-0.5 font-mono text-[15px] font-bold tracking-[0.14em] text-foreground">{countdown}</p>
+              </div>
             </div>
           </div>
         )}
