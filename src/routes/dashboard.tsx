@@ -12,6 +12,7 @@ import {
   Target,
   Trophy,
   X,
+  Flame,
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { StreakFlame } from "@/components/StreakFlame";
@@ -183,21 +184,29 @@ function Dashboard() {
               onClick={() => setSelected(d)}
               aria-label={`Day ${d.id}, ${d.status}`}
               className={cn(
-                "flex aspect-square items-center justify-center rounded-lg border font-mono text-[10px] font-bold transition-transform hover:scale-105",
+                "relative flex aspect-square items-center justify-center rounded-lg border font-mono text-[10px] font-bold transition-transform hover:scale-105",
                 d.status === "completed" && "border-primary/20 bg-primary/10 text-primary",
                 d.status === "missed" && "border-destructive/20 bg-destructive/10 text-destructive",
                 d.status === "today" && "border-primary/30 bg-primary/15 text-primary ring-2 ring-primary/20",
                 d.status === "upcoming" && "border-border bg-muted text-subtle-foreground",
               )}
             >
-              {d.id}
+              <span className="leading-none">{d.id}</span>
+              {d.status === "completed" && (
+                <CheckCircle2 aria-hidden className="absolute right-0.5 top-0.5 size-2.5 text-primary" />
+              )}
+              {d.status === "missed" && <X aria-hidden className="absolute right-0.5 top-0.5 size-2.5" />}
+              {d.status === "today" && (
+                <Flame aria-hidden className="absolute right-0.5 top-0.5 size-2.5 text-primary" />
+              )}
+              {d.status === "upcoming" && <Lock aria-hidden className="absolute right-0.5 top-0.5 size-2.5" />}
             </button>
           ))}
         </div>
         <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-muted-foreground">
           <Legend icon={CheckCircle2} className="text-primary" label="Completed" />
           <Legend icon={X} className="text-destructive" label="Missed" />
-          <Legend icon={Circle} className="text-accent" label="Today" />
+          <Legend icon={Flame} className="text-primary" label="Today" />
           <Legend icon={Lock} className="text-subtle-foreground" label="Upcoming" />
         </ul>
       </section>

@@ -51,7 +51,11 @@ function useMidnightCountdown() {
     const tick = () => {
       const now = new Date();
       const end = new Date(now);
-      end.setHours(28, 0, 0, 0); // 4:00 AM next day
+      end.setHours(24, 0, 0, 0);
+      if (end <= now) {
+        end.setDate(end.getDate() + 1);
+        end.setHours(24, 0, 0, 0);
+      }
       const diff = Math.max(end.getTime() - now.getTime(), 0);
       const h = Math.floor(diff / 3.6e6);
       const m = Math.floor((diff % 3.6e6) / 6e4);
