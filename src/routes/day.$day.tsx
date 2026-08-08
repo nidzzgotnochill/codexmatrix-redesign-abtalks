@@ -238,8 +238,8 @@ function ProofForm({
 }: {
   dayId: number;
   submitted: boolean;
-  github?: string;
-  linkedin?: string;
+  github?: string | undefined;
+  linkedin?: string | undefined;
   onSubmit: (id: number, g: string, l: string) => void;
 }) {
   const [g, setG] = useState(github ?? "");
