@@ -34,8 +34,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="flex size-8 items-center justify-center rounded-xl bg-momentum shadow-glow">
               <Zap aria-hidden className="size-4 fill-primary-foreground text-primary-foreground" />
             </span>
-            <span className="text-sm font-extrabold tracking-tight">
-              ABTalk<span className="text-primary">S</span>
+            <span className="logo-wordmark flex items-baseline gap-1 text-[0.95rem] font-black leading-none sm:text-[1.05rem]">
+              <span className="text-foreground">AB</span>
+              <span className="logo-wordmark-accent text-primary">TALKS</span>
             </span>
           </Link>
 

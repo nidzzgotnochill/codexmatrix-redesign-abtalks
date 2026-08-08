@@ -67,15 +67,14 @@ function Landing() {
           Cohort 07 · starts every Monday
         </span>
 
-        <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
+        <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.08] tracking-tight sm:text-5xl">
           Code daily for 60 days.
           <br />
           <span className="text-momentum">Make it impossible to ignore.</span>
         </h1>
 
-        <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">
-          ABTalkS is a 60-day accountability challenge for Indian college students. One task a night, one public commit,
-          one LinkedIn post — until your profile speaks louder than your resume.
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+          One focused build every day, public proof of work, and a streak that turns your GitHub history into recruiter-ready momentum.
         </p>
 
         <div className="mt-5 flex flex-col gap-2 sm:flex-row">
@@ -104,23 +103,25 @@ function Landing() {
         </div>
       </section>
 
-      <section className="mt-8 overflow-hidden rounded-3xl border border-border bg-surface py-4">
+      <section className="mt-7 overflow-hidden rounded-3xl border border-border bg-surface py-4">
         <p className="px-4 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
           Students from 120+ campuses
         </p>
-        <div className="mt-3 flex w-max animate-marquee gap-2 hover:[animation-play-state:paused]">
-          {[...trustColleges, ...trustColleges].map((c, i) => (
-            <span
-              key={`${c}-${i}`}
-              className="whitespace-nowrap rounded-xl border border-border bg-surface-raised px-3 py-1.5 text-[11px] font-medium text-muted-foreground"
-            >
-              {c}
-            </span>
-          ))}
+        <div className="relative mt-3 overflow-hidden">
+          <div className="marquee-fade flex w-max animate-marquee gap-2 px-4 hover:[animation-play-state:paused]">
+            {[...trustColleges, ...trustColleges].map((c, i) => (
+              <span
+                key={`${c}-${i}`}
+                className="whitespace-nowrap rounded-xl border border-border bg-surface-raised px-3 py-1.5 text-[11px] font-medium text-muted-foreground"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="mt-8">
+      <section className="mt-7">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">How it works</h2>
         <div className="mt-3 grid gap-2.5 sm:grid-cols-3">
           {STEPS.map((s, i) => (
@@ -161,7 +162,7 @@ function Landing() {
         </div>
       </section>
 
-      <section className="mt-8">
+      <section className="mt-7">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">What recruiters say</h2>
         <div className="mt-3 flex snap-x gap-2.5 overflow-x-auto no-scrollbar pb-1">
           {recruiterQuotes.map((r) => (
@@ -178,7 +179,7 @@ function Landing() {
         </div>
       </section>
 
-      <section className="mt-8">
+      <section className="mt-7">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Before you commit</h2>
         <div className="mt-3 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
           {faqs.map((f) => (
@@ -193,7 +194,7 @@ function Landing() {
         </div>
       </section>
 
-      <section className="mt-8 rounded-3xl border border-border bg-surface p-5 text-center">
+      <section className="mt-7 rounded-3xl border border-border bg-surface p-5 text-center">
         <div className="flex justify-center gap-3 text-muted-foreground">
           <GitCommitHorizontal aria-hidden className="size-5" />
           <Linkedin aria-hidden className="size-5" />

@@ -51,6 +51,7 @@
 
 :root {
   --radius: 0.875rem;
+  --font-brush: "Segoe Script", "Brush Script MT", "Comic Sans MS", cursive;
 
   /* Light */
   --background: oklch(0.985 0 0);
@@ -171,6 +172,23 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.logo-wordmark {
+  font-family: var(--font-brush);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transform: rotate(-1deg);
+  text-rendering: optimizeLegibility;
+}
+
+.logo-wordmark-accent {
+  font-weight: 800;
+}
+
+.marquee-fade {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 @utility bg-momentum {

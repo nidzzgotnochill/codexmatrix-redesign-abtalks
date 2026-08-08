@@ -118,11 +118,16 @@ function DayPage() {
         <h1 className="mt-1 text-xl font-extrabold leading-tight">{day.title}</h1>
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{day.summary}</p>
         {day.status === "today" && (
-          <p className="mt-3 inline-flex items-center gap-2 rounded-xl border border-highlight/30 bg-highlight/10 px-3 py-1.5 text-xs font-semibold">
-            <Clock aria-hidden className="size-3.5 text-highlight" />
-            <span className="font-mono tabular-nums">{countdown}</span>
-            <span className="font-normal text-muted-foreground">left to submit</span>
-          </p>
+          <div className="mt-3 flex items-center justify-between gap-3 rounded-2xl border border-highlight/25 bg-highlight/10 p-3">
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-highlight/85">Deadline</p>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">Closes at 4:00 AM IST</p>
+            </div>
+            <div className="rounded-xl border border-highlight/25 bg-background/70 px-3 py-2 text-center">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Time left</p>
+              <p className="mt-1 font-mono text-lg font-black tracking-[0.2em] text-foreground">{countdown}</p>
+            </div>
+          </div>
         )}
       </header>
 
@@ -199,7 +204,14 @@ function DayPage() {
           </p>
         </div>
       ) : (
-        <ProofForm dayId={day.id} submitted={day.status === "completed"} github={day.githubUrl} linkedin={day.linkedinUrl} onSubmit={submitProof} />
+        <ProofForm
+          dayId={day.id}
+          submitted={day.status === "completed"}
+          github={day.githubUrl}
+          linkedin={day.linkedinUrl}
+          streak={profile.currentStreak}
+          onSubmit={submitProof}
+        />
       )}
 
       {/* Prev / next */}
@@ -234,12 +246,14 @@ function ProofForm({
   submitted,
   github,
   linkedin,
+  streak,
   onSubmit,
 }: {
   dayId: number;
   submitted: boolean;
   github?: string | undefined;
   linkedin?: string | undefined;
+  streak: number;
   onSubmit: (id: number, g: string, l: string) => void;
 }) {
   const [g, setG] = useState(github ?? "");
@@ -262,8 +276,10 @@ function ProofForm({
         >
           <CheckCircle2 className="size-6" />
         </motion.span>
-        <h2 className="mt-3 text-sm font-bold">Day {dayId} proof submitted</h2>
-        <p className="mt-1 text-xs text-muted-foreground">Your streak is safe and your work is public.</p>
+        <h2 className="mt-3 text-sm font-bold">Proof submitted</h2>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+          Your work is now public, and your streak is at {streak} day{streak === 1 ? "" : "s"}.
+        </p>
         <div className="mt-3 space-y-1.5 text-left">
           {[
             { icon: Github, url: github, label: "Commit" },

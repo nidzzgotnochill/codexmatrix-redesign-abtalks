@@ -14,8 +14,8 @@ export function StreakFlame({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-semibold",
-        size === "sm" ? "text-xs" : "text-sm",
+        "inline-flex items-center gap-1.5 rounded-full border font-semibold shadow-sm",
+        size === "sm" ? "px-3 py-1.5 text-xs" : "px-3.5 py-2 text-sm",
         alive
           ? "border-primary/25 bg-primary/10 text-primary"
           : "border-border bg-muted text-muted-foreground",

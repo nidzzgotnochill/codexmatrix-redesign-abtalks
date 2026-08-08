@@ -57,7 +57,7 @@ function Dashboard() {
             </p>
           </div>
         </div>
-        <StreakFlame streak={profile.currentStreak} />
+        <StreakFlame streak={profile.currentStreak} size="lg" />
       </section>
 
       {/* Preset switcher — demo affordance for edge-case states */}
@@ -104,19 +104,22 @@ function Dashboard() {
 
       {/* Today's task */}
       {today && (
-        <section className="relative mt-4 overflow-hidden rounded-3xl border border-border bg-surface p-5 shadow-elevated">
+        <section className="relative mt-4 overflow-hidden rounded-[1.6rem] border border-border bg-surface p-5 shadow-elevated">
           <div className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-primary/15 blur-3xl" />
-          <div className="flex items-center justify-between">
-            <span className="rounded-lg border border-primary/25 bg-primary/10 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-primary">
-              Day {today.id} of {totalDays}
-            </span>
-            <span className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Clock aria-hidden className="size-3.5" /> Due 4:00 AM
-            </span>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <span className="rounded-full border border-primary/25 bg-primary/10 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-primary">
+                Day {today.id} of {totalDays}
+              </span>
+              <h2 className="mt-3 text-lg font-bold leading-tight">{today.title}</h2>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{today.summary}</p>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-2xl border border-border/70 bg-surface-raised/70 px-3 py-2 text-[11px] font-medium text-muted-foreground sm:whitespace-nowrap">
+              <Clock aria-hidden className="size-3.5" />
+              Due by 4:00 AM IST
+            </div>
           </div>
-          <h2 className="mt-3 text-base font-bold">{today.title}</h2>
-          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{today.summary}</p>
-          <div className="mt-4 flex items-center justify-between gap-3">
+          <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-border/70 bg-surface-raised/70 p-3 sm:flex-row sm:items-center sm:justify-between">
             <span className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
               <span
                 className={cn(
@@ -126,11 +129,11 @@ function Dashboard() {
               />
               {today.status === "completed" ? "Submitted & verified" : "Pending submission"}
             </span>
-            <motion.div whileTap={{ scale: 0.96 }}>
+            <motion.div whileTap={{ scale: 0.96 }} className="w-full sm:w-auto">
               <Link
                 to="/day/$day"
                 params={{ day: String(today.id) }}
-                className="flex items-center gap-1.5 rounded-xl bg-momentum px-4 py-2.5 text-xs font-bold text-primary-foreground"
+                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-momentum px-4 py-2.5 text-xs font-bold text-primary-foreground sm:w-auto"
               >
                 {today.status === "completed" ? "View proof" : "Submit proof"}
                 <ChevronRight aria-hidden className="size-3.5" />
@@ -173,7 +176,7 @@ function Dashboard() {
           <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">60-day journey</h2>
           <span className="text-[10px] text-subtle-foreground">Tap any day</span>
         </div>
-        <div className="mt-3 grid grid-cols-10 gap-1.5 rounded-2xl border border-border bg-surface p-3">
+        <div className="mt-3 grid grid-cols-10 gap-1.5 rounded-2xl border border-border bg-surface p-3 sm:gap-2 sm:p-4">
           {profile.days.map((d) => (
             <button
               key={d.id}
