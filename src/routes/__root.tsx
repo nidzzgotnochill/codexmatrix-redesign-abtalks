@@ -95,8 +95,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "ABTalkS — 60 Days. One Task a Day. Public Proof." },
       { name: "twitter:description", content: "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4b7017e7a7979e1114607e1c1640c79a/id-preview-e15dcc4b--671c2e9d-5bfa-46d4-849f-1e87fe0589ff.lovable.app-1786217425186.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4b7017e7a7979e1114607e1c1640c79a/id-preview-e15dcc4b--671c2e9d-5bfa-46d4-849f-1e87fe0589ff.lovable.app-1786217425186.png" },
+      { property: "og:image", content: "/favicon.ico" },
+      { name: "twitter:image", content: "/favicon.ico" },
     ],
     links: [
       {
