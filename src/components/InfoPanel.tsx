@@ -110,8 +110,8 @@ export function InfoPanel({ open, onClose }: { open: boolean; onClose: () => voi
             <div className="mt-5 flex items-start gap-2 rounded-2xl border border-accent/25 bg-accent/10 p-3">
               <Route aria-hidden className="mt-0.5 size-4 shrink-0 text-accent" />
               <p className="text-xs leading-relaxed text-muted-foreground">
-                A day stays open until <span className="font-semibold text-foreground">4:00 AM IST</span> — late-night
-                commits still count for the previous day.
+                A day stays open until <span className="font-semibold text-foreground">local midnight</span> — late-night
+                work counts as long as you submit before 12:00 AM.
               </p>
             </div>
           </motion.div>
