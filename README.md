@@ -35,9 +35,9 @@ Switch between them live with the **Preview state** control on the dashboard:
 
 ## The thoughtful idea
 
-**The midnight deadline, made visible.** Students code late; a midnight cut-off punishes them for
-their actual schedule. The day closes at local midnight and the countdown on the day page shows exactly
-how much time is left — so a 1:30 AM commit still counts for the right day. Paired with it: an
+**The midnight deadline, made visible.** Students code late, so the pressure is knowing exactly how
+much of the day is left. Each challenge day closes at local midnight and the countdown on the day page
+shows the remaining hours, minutes and seconds — submit before 12:00 AM and the day counts. Paired with it: an
 **info button + keyboard shortcuts** in the header, because nobody reads the docs.
 
 ## Tech stack
