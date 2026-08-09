@@ -95,8 +95,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "ABTalkS — 60 Days. One Task a Day. Public Proof." },
       { name: "twitter:description", content: "A 60-day coding challenge for Indian college students. Pick a track, build every night, and prove it with a GitHub commit and a LinkedIn post." },
-      { property: "og:image", content: "/favicon.ico" },
-      { name: "twitter:image", content: "/favicon.ico" },
+      { property: "og:image", content: "/preview.png" },
+      { name: "twitter:image", content: "/preview.png" },
     ],
     links: [
       {
