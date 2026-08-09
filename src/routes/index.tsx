@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { faqs, recruiterQuotes, trustColleges } from "@/lib/mock-data";
+import { useChallenge } from "@/lib/challenge-store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -58,6 +59,9 @@ const STEPS = [
 
 function Landing() {
   const students = useCountUp(4218);
+  const { profile, completedCount, missedCount, totalDays } = useChallenge();
+  const currentDay = profile.challengeDay;
+  const started = completedCount > 0 || missedCount > 0 || currentDay > 1;
 
   return (
     <AppShell>
@@ -80,19 +84,20 @@ function Landing() {
         <div className="mt-5 flex flex-col gap-2 sm:flex-row">
           <motion.div whileTap={{ scale: 0.97 }} className="sm:w-auto">
             <Link
-              to="/dashboard"
+              to={started ? "/day/$day" : "/dashboard"}
+              params={{ day: String(currentDay) }}
               className="flex w-full items-center justify-center gap-2 rounded-2xl bg-momentum px-5 py-3.5 text-sm font-bold text-primary-foreground shadow-glow"
             >
-              Start the 60-day challenge
+              {started ? `Open Day ${currentDay}` : "Start the 60-day challenge"}
               <ArrowRight aria-hidden className="size-4" />
             </Link>
           </motion.div>
           <Link
-            to="/day/$day"
-            params={{ day: "12" }}
+            to={started ? "/dashboard" : "/day/$day"}
+            params={{ day: String(currentDay) }}
             className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-5 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
           >
-            See a sample day
+            {started ? "View my dashboard" : "See a sample day"}
           </Link>
         </div>
 
@@ -147,7 +152,7 @@ function Landing() {
           <div>
             <h3 className="text-sm font-bold">Code at 2 AM? We've got you.</h3>
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-              A challenge day stays open until local midnight. Late-night commits still count for the day before.
+              A challenge day stays open until local midnight, and a live countdown shows exactly how long you have left.
             </p>
           </div>
         </div>
@@ -200,16 +205,21 @@ function Landing() {
           <Linkedin aria-hidden className="size-5" />
           <RouteIcon aria-hidden className="size-5" />
         </div>
-        <h2 className="mt-3 text-lg font-extrabold">Day 1 is a README and one commit.</h2>
+        <h2 className="mt-3 text-lg font-extrabold">
+          {started ? `You're on Day ${currentDay} of ${totalDays}.` : "Day 1 is a README and one commit."}
+        </h2>
         <p className="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">
-          That's it. The hardest part is starting tonight instead of next Monday.
+          {started
+            ? `${completedCount} day${completedCount === 1 ? "" : "s"} shipped so far. Keep the streak alive — today's task closes at midnight.`
+            : "That's it. The hardest part is starting tonight instead of next Monday."}
         </p>
         <motion.div whileTap={{ scale: 0.97 }} className="mt-4">
           <Link
-            to="/dashboard"
+            to={started ? "/day/$day" : "/dashboard"}
+            params={{ day: String(currentDay) }}
             className="inline-flex items-center gap-2 rounded-2xl bg-momentum px-5 py-3 text-sm font-bold text-primary-foreground shadow-glow"
           >
-            Open my dashboard
+            {started ? "Open today's challenge" : "Start the challenge"}
             <ArrowRight aria-hidden className="size-4" />
           </Link>
         </motion.div>

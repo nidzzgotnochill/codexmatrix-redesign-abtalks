@@ -21,7 +21,7 @@ All three are designed for a **390px** viewport first; desktop is a secondary la
 | --- | --- |
 | `/` | Landing page for a student who has never heard of ABTalkS: what the challenge is, how it works in three steps, campus/recruiter trust signals, and FAQs including the "I code at 2 AM" case. |
 | `/dashboard` | Current streak, today's task, completion %, consistency score, longest streak, days remaining, and the 60-day matrix with a tap-to-preview modal. |
-| `/day/12` | A full challenge day: task briefing tabs (Overview / Requirements / Resources), a countdown to the 4:00 AM cut-off, and the proof-of-work form with live URL validation, loading, error and success states. Prev/next day navigation included; the route is dynamic (`/day/$day`, 1–60). |
+| `/day/12` | A full challenge day: task briefing tabs (Overview / Requirements / Resources), a countdown to the local-midnight cut-off, and the proof-of-work form with live URL validation, loading, error and success states. Prev/next day navigation included; the route is dynamic (`/day/$day`, 1–60). |
 
 ## Edge cases handled
 
@@ -35,9 +35,9 @@ Switch between them live with the **Preview state** control on the dashboard:
 
 ## The thoughtful idea
 
-**The 4:00 AM day boundary, made visible.** Students code late; a midnight cut-off punishes them for
-their actual schedule. The day rolls at 4:00 AM IST and the countdown on the day page shows exactly
-how much time is left — so a 1:30 AM commit still counts for the right day. Paired with it: an
+**The midnight deadline, made visible.** Students code late, so the pressure is knowing exactly how
+much of the day is left. Each challenge day closes at local midnight and the countdown on the day page
+shows the remaining hours, minutes and seconds — submit before 12:00 AM and the day counts. Paired with it: an
 **info button + keyboard shortcuts** in the header, because nobody reads the docs.
 
 ## Tech stack

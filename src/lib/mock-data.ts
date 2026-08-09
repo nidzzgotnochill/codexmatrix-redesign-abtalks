@@ -69,6 +69,34 @@ function buildDays(today: number, missed: number[] = []): ChallengeDay[] {
   });
 }
 
+/** All progress stats are derived from the day list so the UI can never contradict itself. */
+function deriveStats(days: ChallengeDay[], challengeDay: number) {
+  const completed = days.filter((d) => d.status === "completed").length;
+
+  let currentStreak = 0;
+  for (let id = challengeDay - 1; id >= 1; id--) {
+    if (days[id - 1]?.status === "completed") currentStreak++;
+    else break;
+  }
+
+  let longestStreak = 0;
+  let run = 0;
+  for (const d of days) {
+    if (d.id >= challengeDay) break;
+    if (d.status === "completed") {
+      run++;
+      longestStreak = Math.max(longestStreak, run);
+    } else run = 0;
+  }
+
+  const elapsed = Math.max(challengeDay - 1, 0);
+  return {
+    currentStreak,
+    longestStreak,
+    consistencyScore: elapsed ? Math.round((completed / elapsed) * 100) : 0,
+  };
+}
+
 const BASE = {
   name: "Nidhi Bhat",
   initials: "NB",
@@ -77,45 +105,22 @@ const BASE = {
   track: "Full-stack",
 };
 
-export const activeStreakUser: UserProfile = {
-  ...BASE,
-  currentStreak: 11,
-  longestStreak: 11,
-  challengeDay: TODAY,
-  consistencyScore: 92,
-  days: buildDays(TODAY),
-};
+function makeProfile(base: Omit<UserProfile, "currentStreak" | "longestStreak" | "consistencyScore" | "days" | "challengeDay">, challengeDay: number, missed: number[] = []): UserProfile {
+  const days = buildDays(challengeDay, missed);
+  return { ...base, challengeDay, days, ...deriveStats(days, challengeDay) };
+}
 
-export const brokenStreakUser: UserProfile = {
-  ...BASE,
-  currentStreak: 0,
-  longestStreak: 10,
-  challengeDay: TODAY,
-  consistencyScore: 78,
-  days: buildDays(TODAY, [TODAY - 1]),
-};
+/** Realistic history: days 1–7 completed, day 8 missed, days 9–11 completed, day 12 today. */
+export const activeStreakUser: UserProfile = makeProfile(BASE, TODAY, [8]);
 
-export const firstDayUser: UserProfile = {
-  ...BASE,
-  currentStreak: 0,
-  longestStreak: 0,
-  challengeDay: 1,
-  consistencyScore: 0,
-  days: buildDays(1),
-};
+export const brokenStreakUser: UserProfile = makeProfile(BASE, TODAY, [8, TODAY - 1]);
 
-export const emptyProfileUser: UserProfile = {
-  name: "New student",
-  initials: "?",
-  college: "",
-  branch: "",
-  track: "",
-  currentStreak: 0,
-  longestStreak: 0,
-  challengeDay: 1,
-  consistencyScore: 0,
-  days: buildDays(1),
-};
+export const firstDayUser: UserProfile = makeProfile(BASE, 1);
+
+export const emptyProfileUser: UserProfile = makeProfile(
+  { name: "New student", initials: "?", college: "", branch: "", track: "" },
+  1,
+);
 
 export const PRESETS: Record<PresetKey, { label: string; profile: UserProfile }> = {
   activeStreak: { label: "On streak", profile: activeStreakUser },
@@ -138,7 +143,7 @@ export const recruiterQuotes = [
 export const faqs = [
   {
     q: "I code at 2 AM after college. Does that count?",
-    a: "Yes. A day runs until 4:00 AM IST, so a late-night commit still lands on the right day. Most of our students ship between 11 PM and 2 AM.",
+    a: "Yes. A challenge day runs until local midnight, so a late-night commit still counts as long as you submit it before 12:00 AM. Most of our students ship between 9 PM and midnight.",
   },
   {
     q: "What if I miss a day?",
