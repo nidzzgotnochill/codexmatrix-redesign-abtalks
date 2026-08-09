@@ -93,11 +93,11 @@ function Landing() {
             </Link>
           </motion.div>
           <Link
-            to="/day/$day"
+            to={started ? "/dashboard" : "/day/$day"}
             params={{ day: String(currentDay) }}
             className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-5 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
           >
-            See a sample day
+            {started ? "View my dashboard" : "See a sample day"}
           </Link>
         </div>
 

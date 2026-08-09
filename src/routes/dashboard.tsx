@@ -98,8 +98,11 @@ function Dashboard() {
       )}
       {missedCount > 0 && (
         <Banner tone="warning" icon={AlertTriangle}>
-          You missed Day {profile.days.find((d) => d.status === "missed")?.id}. Your {profile.longestStreak}-day best is
-          safe — submit today to start again.
+          You missed Day {profile.days.filter((d) => d.status === "missed").map((d) => d.id).join(", ")}. Your{" "}
+          {profile.longestStreak}-day best is safe —{" "}
+          {profile.currentStreak > 0
+            ? `you've rebuilt a ${profile.currentStreak}-day streak since. Keep it going today.`
+            : "submit today to start again."}
         </Banner>
       )}
 
