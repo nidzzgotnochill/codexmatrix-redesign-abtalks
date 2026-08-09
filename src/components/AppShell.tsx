@@ -1,7 +1,7 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
-import { Home, LayoutGrid, Terminal, Info, Moon, Sun, Zap } from "lucide-react";
+import { Home, LayoutGrid, Terminal, Info, Moon, Sun, Mic } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { useChallenge } from "@/lib/challenge-store";
 import { InfoPanel } from "./InfoPanel";
@@ -32,7 +32,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2" aria-label="ABTalks home">
             <span className="flex size-8 items-center justify-center rounded-xl bg-momentum shadow-glow">
-              <Zap aria-hidden className="size-4 fill-primary-foreground text-primary-foreground" />
+              <Mic aria-hidden className="size-4 fill-primary-foreground text-primary-foreground" />
             </span>
             <span className="logo-wordmark flex items-baseline gap-1 text-[0.95rem] font-black leading-none sm:text-[1.05rem]">
               <span className="text-foreground">AB</span>
